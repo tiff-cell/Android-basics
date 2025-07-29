@@ -1,6 +1,5 @@
 package com.celly.swaggy.navigation
 
-import android.window.SplashScreen
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -10,8 +9,11 @@ import androidx.navigation.compose.rememberNavController
 import com.celly.swaggy.ui.theme.screens.about.AboutScreen
 import com.celly.swaggy.ui.theme.screens.category.CategoryScreen
 import com.celly.swaggy.ui.theme.screens.contact.ContactScreen
+import com.celly.swaggy.ui.theme.screens.details.DetailScreen
 import com.celly.swaggy.ui.theme.screens.home.HomeScreen
 import com.celly.swaggy.ui.theme.screens.item.ItemScreen
+import com.celly.swaggy.ui.theme.screens.scaffold.ScaffoldScreen
+import com.celly.swaggy.ui.theme.screens.tiff.TiffScreen
 import com.celly.swaggy.ui.theme.screens.splash.SplashScreen
 
 @Composable
@@ -43,6 +45,15 @@ fun AppNavHost(
         }
         composable(ROUT_SPLASH) {
             SplashScreen(navController)
+        }
+        composable(ROUT_TIFF) {
+            TiffScreen(navController)
+        }
+        composable(ROUT_SCAFFOLD) {
+            ScaffoldScreen(navController)
+        }
+        composable(ROUT_DETAIL) {
+           DetailScreen(navController)
         }
 
 

@@ -1,34 +1,18 @@
-package com.celly.swaggy.ui.theme.screens.splash
+package com.celly.swaggy.ui.theme.screens.tiff
 
-import android.annotation.SuppressLint
-import android.window.SplashScreen
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -40,35 +24,24 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.celly.swaggy.R
-import com.celly.swaggy.navigation.ROUT_HOME
-import com.celly.swaggy.navigation.ROUT_ITEM
 import com.celly.swaggy.ui.theme.burntorange
-import com.celly.swaggy.ui.theme.emarald
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
-@SuppressLint("CoroutineCreationDuringComposition")
+
 @Composable
-fun SplashScreen(navController: NavController){
-    val coroutine=rememberCoroutineScope()
-    coroutine.launch {
-        delay(2000)
-        navController.navigate(ROUT_HOME)
-
-    }
-
+fun TiffScreen(navController: NavController){
 
     Column (
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
+
     ){
 
         //Lottie Animation
-        val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.ecommerce))
+        val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.kande))
         val progress by animateLottieCompositionAsState(composition)
         LottieAnimation(composition, progress,
-            modifier = Modifier.size(300.dp)
+            modifier = Modifier.size(400.dp)
         )
         //End of Animation
 
@@ -76,37 +49,36 @@ fun SplashScreen(navController: NavController){
 
 
         Text(
-            text = "Shop Smart.Live Better",
-            fontSize = 18.sp,
-            color = emarald,
+            text = "Our website will undergo scheduled maintenance",
+            fontSize = 15.sp,
+            color = Color.Black,
+            textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(10.dp))
 
         Text(
-            text = "Thousands of Products At Your Fingertips.Great Deals.Fast Delivery.",
+            text = "We apologize for any inconvenience and appreciate your understanding.",
             fontSize = 15.sp,
-            color = emarald,
+            color = Color.Blue,
             modifier = Modifier.align(Alignment.CenterHorizontally),
             textAlign = TextAlign.Center
 
         )
         Spacer(modifier = Modifier.height(10.dp))
         LinearProgressIndicator(
-            color =emarald
+            color = burntorange
         )
 
 
 
 
-
-
-
     }
+
 }
 
 
 @Preview(showBackground = true)
 @Composable
-fun SplashScreenPreview(){
-    SplashScreen(rememberNavController())
+fun TiffScreenPreview(){
+    TiffScreen(rememberNavController())
 }

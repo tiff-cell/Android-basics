@@ -42,6 +42,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.celly.swaggy.R
+import com.celly.swaggy.navigation.ROUT_DETAIL
+import com.celly.swaggy.navigation.ROUT_ITEM
 import com.celly.swaggy.ui.theme.blueish
 import com.celly.swaggy.ui.theme.burntorange
 
@@ -198,7 +200,9 @@ fun CategoryScreen(navController: NavController){
             )
         Spacer(modifier = Modifier.height(10.dp))
         Button(
-            onClick = {},
+            onClick = {
+                navController.navigate(ROUT_DETAIL)
+            },
             colors = ButtonDefaults.buttonColors(blueish),
             modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
         ) {
