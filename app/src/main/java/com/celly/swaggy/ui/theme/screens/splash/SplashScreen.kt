@@ -65,7 +65,7 @@ fun SplashScreen(navController: NavController){
     ){
 
         //Lottie Animation
-        val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.ecommerce))
+        val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.kande))
         val progress by animateLottieCompositionAsState(composition)
         LottieAnimation(composition, progress,
             modifier = Modifier.size(300.dp)

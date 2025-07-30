@@ -27,6 +27,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -38,7 +39,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -51,210 +51,255 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.celly.swaggy.R
 import com.celly.swaggy.navigation.ROUT_CATEGORY
-import com.celly.swaggy.ui.theme.blueish
 import com.celly.swaggy.ui.theme.burntorange
-import com.celly.swaggy.ui.theme.emarald
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ItemScreen(navController: NavController){
-    Column (
+fun ItemScreen(navController: NavController) {
+    Column(
         modifier = Modifier.fillMaxSize()
-
-    ){
-       //TopAppBar
-      TopAppBar(
-          title = { Text(text = "Products") },
-          colors = TopAppBarDefaults.topAppBarColors(
-              containerColor = burntorange,
-              titleContentColor = Color.White,
-              navigationIconContentColor = Color.White,
-              actionIconContentColor = Color.White
-          ),
-          navigationIcon = {
-              IconButton(onClick = {}) {
-                  Icon(
-                      imageVector = Icons.Default.Menu,
-                      contentDescription = "menu"
-                  )
-              }
-          },
-          actions = {
-              IconButton(onClick = {}) {
-                  Icon(
-                      imageVector = Icons.Default.ShoppingCart,
-                      contentDescription = "Cart"
-                  )
-              }
-              IconButton(onClick = {}) {
-                  navController.navigate(ROUT_CATEGORY)
-                  Icon(
-                      imageVector = Icons.Default.ArrowForward,
-                      contentDescription = "Arrowforward"
-                  )
-              }
-          }
-
-      )
+    ) {
+        //TopAppBar
+        TopAppBar(
+            title = { Text(text = "Products") },
+            colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = burntorange,
+                titleContentColor = Color.White,
+                navigationIconContentColor = Color.White,
+                actionIconContentColor = Color.White
+            ),
+            navigationIcon = {
+                IconButton(onClick = {}) {
+                    Icon(
+                        imageVector = Icons.Default.Menu,
+                        contentDescription = "menu"
+                    )
+                }
+            },
+            actions = {
+                IconButton(onClick = {}) {
+                    Icon(
+                        imageVector = Icons.Default.ShoppingCart,
+                        contentDescription = "cart"
+                    )
+                }
+                IconButton(onClick = {
+                    navController.navigate(ROUT_CATEGORY)
+                }) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowForward,
+                        contentDescription = "notifications"
+                    )
+                }
+            }
+        )
         //End of TopAppBar
 
         Image(
-            painter = painterResource(R.drawable.emarald),
-            contentDescription = "necklace",
-            modifier = Modifier.fillMaxWidth().height(250.dp),
+            painter = painterResource(R.drawable.ring),
+            contentDescription = "sweater",
+            modifier = Modifier.fillMaxWidth().height(280.dp),
             contentScale = ContentScale.FillWidth
         )
-
         Spacer(modifier = Modifier.height(10.dp))
 
-        //SearchBar
+        //Search Bar
         var search by remember { mutableStateOf("") }
         OutlinedTextField(
             value = search,
-            onValueChange = {search=it},
+            onValueChange = { search = it },
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
-            leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = "search") },
-            placeholder = { Text(text = "Search Products....") },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Search,
+                    contentDescription = "search"
+                )
+            },
+            placeholder = { Text(text = "Search Products...") },
             colors = OutlinedTextFieldDefaults.colors(
-                unfocusedBorderColor = emarald,
+                unfocusedBorderColor = burntorange,
                 focusedBorderColor = Color.Black
             )
         )
-        //End of SearchBar
+
+        //End of Search Bar
 
         Spacer(modifier = Modifier.height(10.dp))
+
         Text(
             text = "Other Products",
             fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.SemiBold,
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(10.dp))
-       Column (
-           modifier = Modifier.verticalScroll(rememberScrollState())
-       ){
-           //Row
-           Row (
-               modifier = Modifier.padding(start = 20.dp)
-           ){
-               Image(
-                   painter = painterResource(R.drawable.ring),
-                   contentDescription = "necklace",
-                   modifier = Modifier.size(width = 200.dp, height = 100.dp).clip(shape=RoundedCornerShape(10.dp)),
-                   contentScale = ContentScale.Crop
-               )
-               Spacer(modifier = Modifier.width(10.dp))
 
-               Column (){
-                   Text(text = "Stylish Necklace", fontSize = 18.sp, fontWeight = FontWeight.Bold)
-                   Spacer(modifier = Modifier.width(5.dp))
+        Column (
+            modifier = Modifier.verticalScroll(rememberScrollState())
+        ){
+            //Row
+            Row(
+                modifier = Modifier.padding(start = 20.dp)
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.gem),
+                    contentDescription = "sweater",
+                    modifier = Modifier.size(width = 200.dp, height = 250.dp)
+                        .clip(shape = RoundedCornerShape(10.dp)),
+                    contentScale = ContentScale.Crop
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+                Column() {
+                    Text(
+                        text = "Stylish Diamond Necklace",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
 
-                   Text(text = "Brand: Swaroski", fontSize = 15.sp)
-                   Spacer(modifier = Modifier.width(5.dp))
+                    Text(text = "Brand:Swavrosky", fontSize = 15.sp)
+                    Spacer(modifier = Modifier.height(5.dp))
 
-                   Text(text = "Price:Ksh 10000", fontSize = 15.sp, textDecoration = TextDecoration.LineThrough)
-                   Spacer(modifier = Modifier.width(5.dp))
+                    Text(
+                        text = "Price:Ksh.10,000",
+                        fontSize = 15.sp,
+                        textDecoration = TextDecoration.LineThrough
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
 
-                   Text(text = "Now:Ksh 9500", fontSize = 15.sp)
-                   Spacer(modifier = Modifier.width(5.dp))
+                    Text(text = "Price:Ksh.9,500", fontSize = 15.sp)
+                    Text(text = "Material:100% Cotton", fontSize = 15.sp)
+                    Spacer(modifier = Modifier.height(5.dp))
 
-                   Text(text = "Material: Pure Diamond", fontSize = 15.sp)
-                   Spacer(modifier = Modifier.width(5.dp))
+                    Row() {
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
 
-                   Row {
-                       Icon(imageVector = Icons.Default.Star, contentDescription = "", tint = emarald,)
-                       Icon(imageVector = Icons.Default.Star, contentDescription = "", tint = emarald,)
-                       Icon(imageVector = Icons.Default.Star, contentDescription = "", tint = emarald,)
-                       Icon(imageVector = Icons.Default.Star, contentDescription = "", tint = emarald,)
-                       Icon(imageVector = Icons.Default.Star, contentDescription = "")
-                   }
-                   Button(
-                       onClick = {},
-                       colors = ButtonDefaults.buttonColors(blueish),
-                       modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 20.dp)
-                   ) {
-                       Text(text = "Buy Now")
-                   }
+                    }
 
-
-
-
-
-
-
-
-
-               }
-
-
-           }
-           //End of Row
-           Row (
-               modifier = Modifier.padding(start = 20.dp)
-           ){
-               Image(
-                   painter = painterResource(R.drawable.gem),
-                   contentDescription = "necklace",
-                   modifier = Modifier.size(width = 200.dp, height = 100.dp).clip(shape=RoundedCornerShape(10.dp)),
-                   contentScale = ContentScale.Crop
-               )
-               Spacer(modifier = Modifier.width(10.dp))
-
-               Column (){
-                   Text(text = "Stylish Necklace", fontSize = 18.sp, fontWeight = FontWeight.Bold)
-                   Spacer(modifier = Modifier.width(5.dp))
-
-                   Text(text = "Brand: Swaroski", fontSize = 15.sp)
-                   Spacer(modifier = Modifier.width(5.dp))
-
-                   Text(text = "Price:Ksh 10000", fontSize = 15.sp, textDecoration = TextDecoration.LineThrough)
-                   Spacer(modifier = Modifier.width(5.dp))
-
-                   Text(text = "Now:Ksh 9500", fontSize = 15.sp)
-                   Spacer(modifier = Modifier.width(5.dp))
-
-                   Text(text = "Material: Pure Diamond", fontSize = 15.sp)
-                   Spacer(modifier = Modifier.width(5.dp))
-
-                   Row {
-                       Icon(imageVector = Icons.Default.Star, contentDescription = "", tint = emarald,)
-                       Icon(imageVector = Icons.Default.Star, contentDescription = "", tint = emarald,)
-                       Icon(imageVector = Icons.Default.Star, contentDescription = "", tint = emarald,)
-                       Icon(imageVector = Icons.Default.Star, contentDescription = "", tint = emarald,)
-                       Icon(imageVector = Icons.Default.Star, contentDescription = "")
-                   }
-                   Button(
-                       onClick = {},
-                       colors = ButtonDefaults.buttonColors(blueish),
-                       modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 20.dp)
-                   ) {
-                       Text(text = "Buy Now")
-                   }
+                    Spacer(modifier = Modifier.width(5.dp))
+                    Button(
+                        onClick = {},
+                        colors = ButtonDefaults.buttonColors(burntorange),
+                        modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 20.dp)
+                    ) {
+                        Text(text = "Buy Now")
+                    }
+                }
 
 
+            }
+            //End of Row
+
+            Spacer(modifier = Modifier.height(10.dp))
 
 
+            Row(
+                modifier = Modifier.padding(start = 20.dp)
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.necklace),
+                    contentDescription = "Necklace",
+                    modifier = Modifier.size(width = 200.dp, height = 250.dp)
+                        .clip(shape = RoundedCornerShape(10.dp)),
+                    contentScale = ContentScale.Crop
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+                Column() {
+                    Text(
+                        text = "Stylish Emerald Neckpiece",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+
+                    Text(text = "Brand:Swavorsky", fontSize = 15.sp)
+                    Spacer(modifier = Modifier.height(5.dp))
+
+                    Text(
+                        text = "Price:Ksh.20,000",
+                        fontSize = 15.sp,
+                        textDecoration = TextDecoration.LineThrough
+                    )
+                    Spacer(modifier = Modifier.height(5.dp))
+
+                    Text(text = "Price:Ksh.19,500", fontSize = 15.sp)
+                    Text(text = "Material:100% Cotton", fontSize = 15.sp)
+                    Spacer(modifier = Modifier.height(5.dp))
+
+                    Row() {
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "",
+                            tint = Color.Yellow
+                        )
+
+                    }
+
+                    Spacer(modifier = Modifier.width(5.dp))
+                    Button(
+                        onClick = {},
+                        colors = ButtonDefaults.buttonColors(burntorange),
+                        modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 20.dp)
+                    ) {
+                        Text(text = "Buy Now")
+                    }
 
 
+                }
+            }
 
 
-
-               }
-
-
-           }
-
-
-
-       }
+        }
     }
-
 }
-
 
 @Preview(showBackground = true)
 @Composable
 fun ItemScreenPreview(){
-    ItemScreen(rememberNavController())
+    ItemScreen(navController = rememberNavController())
 }

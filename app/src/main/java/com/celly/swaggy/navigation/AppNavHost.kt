@@ -11,6 +11,7 @@ import com.celly.swaggy.ui.theme.screens.category.CategoryScreen
 import com.celly.swaggy.ui.theme.screens.contact.ContactScreen
 import com.celly.swaggy.ui.theme.screens.details.DetailScreen
 import com.celly.swaggy.ui.theme.screens.home.HomeScreen
+import com.celly.swaggy.ui.theme.screens.intent.IntentScreen
 import com.celly.swaggy.ui.theme.screens.item.ItemScreen
 import com.celly.swaggy.ui.theme.screens.scaffold.ScaffoldScreen
 import com.celly.swaggy.ui.theme.screens.tiff.TiffScreen
@@ -54,6 +55,9 @@ fun AppNavHost(
         }
         composable(ROUT_DETAIL) {
            DetailScreen(navController)
+        }
+        composable(ROUT_DETAIL) {
+            IntentScreen(navController)
         }
 
 

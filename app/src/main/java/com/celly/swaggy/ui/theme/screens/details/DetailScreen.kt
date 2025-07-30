@@ -55,6 +55,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.celly.swaggy.R
+import com.celly.swaggy.navigation.ROUT_INTENT
 import com.celly.swaggy.navigation.ROUT_ITEM
 import com.celly.swaggy.ui.theme.blueish
 import com.celly.swaggy.ui.theme.burntorange
@@ -142,7 +143,9 @@ fun DetailScreen(navController: NavController){
         //FloatingActionButton
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { /* Add action */ },
+                onClick = {
+                    navController.navigate(ROUT_INTENT)
+                },
                 containerColor = Color.LightGray
             ) {
                 Icon(Icons.Default.Add, contentDescription = "Add")
@@ -187,7 +190,8 @@ fun DetailScreen(navController: NavController){
 
                 //Row
                 Row (
-                    modifier = Modifier.padding(start = 20.dp)
+                    modifier = Modifier.padding(start = 20.dp).horizontalScroll(rememberScrollState())
+
                 ) {
                     Button(
                         onClick = {},
