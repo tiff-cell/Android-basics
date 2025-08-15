@@ -29,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -36,6 +37,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.celly.swaggy.navigation.ROUT_ITEM
 import com.celly.swaggy.ui.theme.burntorange
+
+
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -50,7 +53,11 @@ fun ScaffoldScreen(navController: NavController){
         //TopBar
         topBar = {
             TopAppBar(
-                title = { Text("Details") },
+                title = {
+                    Text("HEARTLINK")
+                    TextAlign.Center
+
+                        },
                 navigationIcon = {
                     IconButton(onClick = {
                         navController.navigate(ROUT_ITEM)
@@ -61,7 +68,8 @@ fun ScaffoldScreen(navController: NavController){
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = burntorange,
                     titleContentColor = Color.White,
-                    navigationIconContentColor = Color.White
+                    navigationIconContentColor = Color.White,
+
                 )
             )
         },

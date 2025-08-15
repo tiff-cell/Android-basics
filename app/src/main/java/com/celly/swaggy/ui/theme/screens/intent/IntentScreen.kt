@@ -200,6 +200,7 @@ fun IntentScreen(navController: NavController){
                 }
 
                 Spacer(modifier = Modifier.height(10.dp))
+
                 //Contact
                 OutlinedButton(
                     onClick = {
@@ -211,6 +212,8 @@ fun IntentScreen(navController: NavController){
                     Text(text = "Contact Now", color = Color.White)
                 }
                 Spacer(modifier = Modifier.height(10.dp))
+                //End of Contact
+
                 //Email
                 OutlinedButton(
                     onClick = {

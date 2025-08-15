@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("kotlin-kapt") // Use the correct ID for the Kapt plugin
 }
 
 android {
@@ -49,6 +50,9 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    // You can remove this line as room-runtime covers it
+    // implementation(libs.androidx.room.common.jvm)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -57,10 +61,30 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    //Navigation
-    implementation("androidx.navigation:navigation-runtime-ktx:2.9.2")
-    implementation("androidx.navigation:navigation-compose:2.9.2")
+    // Navigation (using the latest stable versions)
+    val nav_version = "2.7.0" // It's better to use a variable for versions
+    implementation("androidx.navigation:navigation-runtime-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-compose:$nav_version")
 
-    //lottie Animation
-    implementation("com.airbnb.android:lottie-compose:4.2.0")
+    // Lottie Animation
+    implementation("com.airbnb.android:lottie-compose:6.4.1")
+
+    // Room Database
+    val room_version = "2.6.1"
+    implementation("androidx.room:room-runtime:$room_version")
+    // Kapt is now correctly configured to use the Room compiler
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    // If using Kotlin Symbol Processing (KSP) instead of Kapt
+    // ksp("androidx.room:room-compiler:2.6.1")
+
+    // Image Loading (Coil for Jetpack Compose)
+    implementation ("io.coil-kt:coil-compose:2.4.0")
+
+    //Livedata
+    implementation("androidx.compose.runtime:runtime-livedata:1.6.7")
+
+
+
+
 }
